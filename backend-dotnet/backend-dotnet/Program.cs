@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-//DB 
+//DB section init .... it works directly with migrations folder
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     {
