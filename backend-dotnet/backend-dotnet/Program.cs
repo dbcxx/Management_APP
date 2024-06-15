@@ -1,10 +1,18 @@
 using backend_dotnet.Core.DbContext;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+
 
 //DB section init .... it works directly with migrations folder
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -14,6 +22,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString);
     });
 
+
+// Dependency Injection
+
+// Add Identity
+
+// Config Identity
+
+// Add AuthenticationSchema and jwtBearer
 
 
 builder.Services.AddEndpointsApiExplorer();
